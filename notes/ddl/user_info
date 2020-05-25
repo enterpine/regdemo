@@ -1,0 +1,8 @@
+use regdemo;
+create table user_info (
+id int auto_increment primary key ,
+name varchar(30) not null,
+mobile varchar(20) not null,
+lisenceFilePath varchar(255) not null,
+passReviewed boolean
+) comment '用户基本信息表';

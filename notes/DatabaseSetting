@@ -1,0 +1,4 @@
+create database regdemo;
+create user 'regdemouser_rw'@'%' identified by '123456';
+grant all privileges on regdemo.* to 'regdemouser_rw'@'%';
+
