@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+<tr th:each="user:${userList}">
+    <td th:text="${user.getId()}"></td>
+    <td th:text="${user.getName()}"></td>
+    <td th:text="${user.getEmail()}"></td>
+    <td th:text="${user.getPassReviewed()}"></td>
+    <td><input type="button" text = "审核"></td>
+    <tr/>
+</table>
+</body>
+</html>

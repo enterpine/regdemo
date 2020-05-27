@@ -2,16 +2,20 @@ package com.lijiaqi.regdemo.controller;
 
 import com.lijiaqi.regdemo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import com.lijiaqi.regdemo.services.UserService;
 
 import java.io.File;
+import java.util.List;
 
-@RestController
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
 public class UserController {
 
     @Autowired
@@ -40,5 +44,13 @@ public class UserController {
         int rows = userService.insert(user);
         return "操作完成，受影响行数为"+rows+"行";
 
+    }
+
+
+    @GetMapping("userlist")
+    public String allUserList(Model model){
+        List<User> userlist = userService.getAllUser();
+        model.addAttribute("userList",userlist);
+        return "userListAll";
     }
 }
