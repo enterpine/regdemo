@@ -45,4 +45,22 @@ public class UserService {
         }
         return userlist;
     }
+
+    public User getUserById(int id){
+        String sql = "select * from user_info where id ="+id;
+        List result= jdbcTemplate.queryForList(sql);
+        Iterator a  =  result.iterator();
+        User user = new User();
+        while(a.hasNext()){
+            Map m =(Map) a.next();
+            user.setId(Integer.parseInt(m.get("id").toString()));
+            user.setName(m.get("name").toString());
+            user.setMobile(m.get("mobile").toString());
+            user.setEmail(m.get("email").toString());
+            user.setPassword(m.get("password").toString());
+            user.setLisenceFilePath(m.get("lisenceFilePath").toString());
+            user.setPassReviewed(Boolean.parseBoolean(m.get("passReviewed").toString()));
+        }
+        return user;
+    }
 }

@@ -11,7 +11,7 @@
     <td th:text="${user.getName()}"></td>
     <td th:text="${user.getEmail()}"></td>
     <td th:text="${user.getPassReviewed()}"></td>
-    <td><input type="button" text = "审核"></td>
+    <td><a th:href="@{'review/'+${user.getId()}}">修改</a></td>
     <tr/>
 </table>
 </body>

@@ -13,6 +13,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -53,4 +54,15 @@ public class UserController {
         model.addAttribute("userList",userlist);
         return "userListAll";
     }
+
+    @GetMapping("review/{id}")
+    public String modifyUser(@PathVariable("id") int id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute("user",user);
+        String[] str=user.getLisenceFilePath().split("/");
+        model.addAttribute("filename",str[str.length-1]);
+        return "reviewUser";
+    }
+
+
 }
