@@ -7,11 +7,16 @@
 <body>
 <table>
 
-        <tr><td th:text="${user.getId()}"></td></tr>
-    <tr><td th:text="${user.getName()}"></td></tr>
-    <tr><td th:text="${user.getEmail()}"></td></tr>
-    <tr><td th:text="${user.getPassReviewed()}"></td></tr>
-    <tr><td th:text="${filename}"></td><a th:href="@{'download/'+${user.getId()}}">下载</a></tr>
+    <tr><td>用户id</td><td th:text="${user.getId()}"></td></tr>
+    <tr><td>用户名称</td><td th:text="${user.getName()}"></td></tr>
+    <tr><td>邮箱地址</td><td th:text="${user.getEmail()}"></td></tr>
+    <tr><td>是否通过验证</td><td th:text="${user.getPassReviewed()}"></td></tr>
+    <tr><td>证件名称</td><td th:text="${filename}"></td><td><a th:href="@{'download/'+${user.getId()}}">下载证件</a></td></tr>
 </table>
+<from>
+    通过<input type="radio" name="radio1" value="1"/>
+    不通过<input type="radio" name="radio1" value="2"/>
+    <input type="submit" value="提交">
+</from>
 </body>
 </html>
