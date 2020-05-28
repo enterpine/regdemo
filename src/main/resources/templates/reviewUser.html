@@ -7,11 +7,11 @@
 <body>
 <table>
 
-        <td th:text="${user.getId()}"></td>
-        <td th:text="${user.getName()}"></td>
-        <td th:text="${user.getEmail()}"></td>
-        <td th:text="${user.getPassReviewed()}"></td>
-        <td th:text="${filename}"></td><a th:href="@{'download/'+${user.getId()}}">下载</a>
+        <tr><td th:text="${user.getId()}"></td></tr>
+    <tr><td th:text="${user.getName()}"></td></tr>
+    <tr><td th:text="${user.getEmail()}"></td></tr>
+    <tr><td th:text="${user.getPassReviewed()}"></td></tr>
+    <tr><td th:text="${filename}"></td><a th:href="@{'download/'+${user.getId()}}">下载</a></tr>
 </table>
 </body>
 </html>
