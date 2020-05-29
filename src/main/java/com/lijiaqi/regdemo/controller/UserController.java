@@ -16,7 +16,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+/**
+ * @author lijiaqi
+ */
 @Controller
 public class UserController {
 
@@ -26,6 +28,16 @@ public class UserController {
     @Autowired
     private Environment environment;
 
+    /**
+     *
+     * @param name user's name
+     * @param mobile user's mobile_number
+     * @param email user's email_address
+     * @param password user's password
+     * @param file user's lisenceFile
+     * @param model
+     * @return page "update_down"
+     */
     @RequestMapping("adduser")
     public String addUser(String name,String mobile,String email,String password,@RequestParam("file") MultipartFile file,Model model){
 
@@ -52,7 +64,11 @@ public class UserController {
 
     }
 
-
+    /**
+     *
+     * @param model
+     * @return page "userListAll"
+     */
     @GetMapping("userlist")
     public String allUserList(Model model){
         List<User> userlist = userService.getAllUser();
@@ -60,6 +76,12 @@ public class UserController {
         return "userListAll";
     }
 
+    /**
+     *
+     * @param id user's id
+     * @param model
+     * @return page "reviewUser"
+     */
     @GetMapping("review/{id}")
     public String reviewUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUserById(id);
@@ -69,6 +91,13 @@ public class UserController {
         return "reviewUser";
     }
 
+    /**
+     *
+     * @param hiddenid user's id hidden in form.
+     * @param passReviewed verify result.
+     * @param model
+     * @return page "update_done"
+     */
     @RequestMapping("review/modifyuser")
     public String modifyUser(int hiddenid,int passReviewed,Model model){
         User user = userService.getUserById(hiddenid);
@@ -78,8 +107,13 @@ public class UserController {
         return "update_done";
     }
 
+    /**
+     *
+     * @param model
+     * @return index page
+     */
     @RequestMapping("/")
-    public String modifyUser(Model model){
+    public String indexpage(Model model){
         return "index";
     }
 

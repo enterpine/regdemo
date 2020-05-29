@@ -1,5 +1,8 @@
 package com.lijiaqi.regdemo.entity;
 
+/**
+ * @author lijiaqi
+ */
 public class User {
     private int id;
     private String name;
@@ -53,7 +56,5 @@ public class User {
     public int getPassReviewed(){
         return this.passReviewed;
     }
-
-
 
 }
