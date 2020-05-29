@@ -40,7 +40,7 @@ public class UserService {
             user.setEmail(m.get("email").toString());
             user.setPassword(m.get("password").toString());
             user.setLisenceFilePath(m.get("lisenceFilePath").toString());
-            user.setPassReviewed(Boolean.parseBoolean(m.get("passReviewed").toString()));
+            user.setPassReviewed(Integer.parseInt(m.get("passReviewed").toString()));
             userlist.add(user);
         }
         return userlist;
@@ -59,14 +59,13 @@ public class UserService {
             user.setEmail(m.get("email").toString());
             user.setPassword(m.get("password").toString());
             user.setLisenceFilePath(m.get("lisenceFilePath").toString());
-            user.setPassReviewed(Boolean.parseBoolean(m.get("passReviewed").toString()));
+            user.setPassReviewed(Integer.parseInt(m.get("passReviewed").toString()));
         }
         return user;
     }
 
-    public int verify(User user,int status) {
+    public int verify(User user,int passReviewed) {
         int userid = user.getId();
-        String passReviewed = status==1?"true":"false";
         String sql = "update user_info set passReviewed = "+passReviewed+" where id = "+ userid;
         int rows = jdbcTemplate.update(sql);
         return rows;

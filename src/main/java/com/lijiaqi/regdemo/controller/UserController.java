@@ -2,6 +2,7 @@ package com.lijiaqi.regdemo.controller;
 
 import com.lijiaqi.regdemo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,12 +23,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("adduser")
-    @ResponseBody
-    public String addUser(String name,String mobile,String email,String password,@RequestParam("file") MultipartFile file){
+    @Autowired
+    private Environment environment;
 
-        String fileName = file.getOriginalFilename();
-        String filePath = "/Users/jinsong/IdeaProjects/regdemo/src/main/resources/uploadFiles/";
+    @RequestMapping("adduser")
+    public String addUser(String name,String mobile,String email,String password,@RequestParam("file") MultipartFile file,Model model){
+
+        String fileName = file.getOriginalFilename()+"_unique_"+mobile;
+        String filePath = environment.getProperty("upload_dictionary");
         String fullPath =  filePath+fileName;
         File dest = new File(fullPath);
         try {
@@ -43,7 +46,9 @@ public class UserController {
         user.setPassword(password);
         user.setLisenceFilePath(fullPath);
         int rows = userService.insert(user);
-        return "操作完成，受影响行数为"+rows+"行";
+        String message = "操作完成，受影响行数为"+rows+"行";
+        model.addAttribute("message",message);
+        return "update_done";
 
     }
 
@@ -60,16 +65,22 @@ public class UserController {
         User user = userService.getUserById(id);
         model.addAttribute("user",user);
         String[] str=user.getLisenceFilePath().split("/");
-        model.addAttribute("filename",str[str.length-1]);
+        model.addAttribute("filename",str[str.length-1].split("_unique_")[0]);
         return "reviewUser";
     }
 
     @RequestMapping("review/modifyuser")
-    @ResponseBody
-    public String modifyUser(int hiddenid,int radio1){
+    public String modifyUser(int hiddenid,int passReviewed,Model model){
         User user = userService.getUserById(hiddenid);
-        int rows = userService.verify(user,radio1);
-        return "操作完成，受影响行数为"+rows+"行";
+        int rows = userService.verify(user,passReviewed);
+        String message = "操作完成，受影响行数为"+rows+"行";
+        model.addAttribute("message",message);
+        return "update_done";
+    }
+
+    @RequestMapping("/")
+    public String modifyUser(Model model){
+        return "index";
     }
 
 }

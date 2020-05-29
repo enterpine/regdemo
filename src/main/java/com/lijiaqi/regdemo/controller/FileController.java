@@ -32,7 +32,7 @@ public class FileController {
         try {
             String filepath = userService.getUserById(id).getLisenceFilePath();
             String[] str=filepath.split("/");
-            String filename = str[str.length-1];
+            String filename = str[str.length-1].split("_unique_")[0];
             File file=new File(filepath);
             FileInputStream fis =new FileInputStream(file);
             response.setContentType("application/force-download");

@@ -5,14 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-<table>
-<tr th:each="user:${userList}">
-    <td th:text="${user.getId()}"></td>
-    <td th:text="${user.getName()}"></td>
-    <td th:text="${user.getEmail()}"></td>
-    <td th:text="${user.getPassReviewed()}"></td>
-    <td><a th:href="@{'review/'+${user.getId()}}">修改</a></td>
-    <tr/>
+<a th:href="@{'/'}">返回首页</a>
+<table border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th>用户id</th>
+        <th>用户名</th>
+        <th>手机号</th>
+        <th>邮箱</th>
+        <th>是否通过审核</th>
+        <th>操作</th>
+    </tr>
+        <tr th:each="user:${userList}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getMobile()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getPassReviewed()}"></td>
+            <td><a th:href="@{'review/'+${user.getId()}}">修改</a></td>
+            <tr/>
+    </thead>
 </table>
 </body>
 </html>

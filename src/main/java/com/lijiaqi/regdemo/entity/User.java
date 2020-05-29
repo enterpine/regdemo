@@ -7,7 +7,7 @@ public class User {
     private String email;
     private String password;
     private String lisenceFilePath;
-    private boolean passReviewed = false;
+    private int passReviewed = 0;
 
     public void setId(int id){
         this.id = id;
@@ -47,10 +47,10 @@ public class User {
         return this.lisenceFilePath;
     }
 
-    public void setPassReviewed(boolean isPass){
+    public void setPassReviewed(int isPass){
         this.passReviewed = isPass;
     }
-    public boolean getPassReviewed(){
+    public int getPassReviewed(){
         return this.passReviewed;
     }
 
