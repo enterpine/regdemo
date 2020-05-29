@@ -63,4 +63,12 @@ public class UserService {
         }
         return user;
     }
+
+    public int verify(User user,int status) {
+        int userid = user.getId();
+        String passReviewed = status==1?"true":"false";
+        String sql = "update user_info set passReviewed = "+passReviewed+" where id = "+ userid;
+        int rows = jdbcTemplate.update(sql);
+        return rows;
+    }
 }

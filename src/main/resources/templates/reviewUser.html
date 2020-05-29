@@ -5,6 +5,7 @@
     <title>ReviewUser</title>
 </head>
 <body>
+
 <table>
 
     <tr><td>用户id</td><td th:text="${user.getId()}"></td></tr>
@@ -13,10 +14,11 @@
     <tr><td>是否通过验证</td><td th:text="${user.getPassReviewed()}"></td></tr>
     <tr><td>证件名称</td><td th:text="${filename}"></td><td><a th:href="@{'download/'+${user.getId()}}">下载证件</a></td></tr>
 </table>
-<from>
+<form action = "modifyuser" method = "POST">
     通过<input type="radio" name="radio1" value="1"/>
-    不通过<input type="radio" name="radio1" value="2"/>
+    不通过<input type="radio" name="radio1" value="0"/>
+    <input type="hidden" name = "hiddenid" th:value="${user.getId()}">
     <input type="submit" value="提交">
-</from>
+</form>
 </body>
 </html>

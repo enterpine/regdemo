@@ -56,7 +56,7 @@ public class UserController {
     }
 
     @GetMapping("review/{id}")
-    public String modifyUser(@PathVariable("id") int id, Model model) {
+    public String reviewUser(@PathVariable("id") int id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user",user);
         String[] str=user.getLisenceFilePath().split("/");
@@ -64,5 +64,12 @@ public class UserController {
         return "reviewUser";
     }
 
+    @RequestMapping("review/modifyuser")
+    @ResponseBody
+    public String modifyUser(int hiddenid,int radio1){
+        User user = userService.getUserById(hiddenid);
+        int rows = userService.verify(user,radio1);
+        return "操作完成，受影响行数为"+rows+"行";
+    }
 
 }
