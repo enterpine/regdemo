@@ -11,7 +11,7 @@
     <tr><td>用户id</td><td th:text="${user.getId()}"></td></tr>
     <tr><td>用户名称</td><td th:text="${user.getName()}"></td></tr>
     <tr><td>邮箱地址</td><td th:text="${user.getEmail()}"></td></tr>
-    <tr><td>是否通过验证</td><td th:text="${user.getPassReviewed()}"></td></tr>
+    <tr><td>是否通过验证</td><td th:text="${user.getPassReviewedStaus()}"></td></tr>
     <tr><td>证件名称</td><td th:text="${filename}"></td><td><a th:href="@{'download/'+${user.getId()}}">下载证件</a></td></tr>
 </table>
 <form action = "modifyuser" method = "POST">

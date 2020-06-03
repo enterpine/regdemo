@@ -57,4 +57,21 @@ public class User {
         return this.passReviewed;
     }
 
+    public String getPassReviewedStaus(){
+        String result ="待审核";
+        switch(this.passReviewed){
+            case 0:
+                result = "待审核";
+                break;
+            case -1:
+                result = "未通过";
+                break;
+            case 1:
+                result = "通过";
+                break;
+        }
+        return result;
+    }
+
 }
+
